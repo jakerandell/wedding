@@ -21,8 +21,7 @@ func main() {
 
 
 	router.GET("/", func(c *gin.Context) {
-		name := c.Param("name")
-		c.String(http.StatusOK, "Hello %s", name)
+		c.String(http.StatusOK, "We're getting married. Give us money.")
 	})
 
 	router.Run(":" + port)
