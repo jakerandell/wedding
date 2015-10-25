@@ -1,1 +1,1 @@
-web: main
+web: wedding
