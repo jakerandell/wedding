@@ -1,0 +1,12 @@
+{
+  "name": "wedding-site",
+  "description": "We're getting married, give us money",
+  "keywords": [
+    "go",
+    "wedding"
+  ],
+  "image": "heroku/go:1.5",
+  "mount_dir": "src/jakerandell.com/wedding",
+  "website": "https://github.com/jakerandell/wedding",
+  "repository": "https://github.com/jakerandell/wedding"
+}
