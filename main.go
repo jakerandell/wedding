@@ -1,9 +1,9 @@
 package main
 
 import (
+	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gin-gonic/gin"
 	"net/http"
 	"os"
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
