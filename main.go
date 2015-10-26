@@ -16,12 +16,17 @@ func main() {
 
 	router := gin.New()
 	router.Use(gin.Logger())
-//	router.LoadHTMLGlob("templates/*.tmpl.html")
-//	router.Static("/static", "static")
+	router.LoadHTMLGlob("templates/*.html")
+	router.Static("/audio", "audio")
+	router.Static("/css", "css")
+	router.Static("/images", "images")
+	router.Static("/js", "js")
+	router.Static("/video", "video")
 
 
 	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "We're getting married. Give us money.")
+//		c.String(http.StatusOK, "We're getting married. Give us money.")
+		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
 	router.Run(":" + port)
