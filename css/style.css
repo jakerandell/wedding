@@ -921,6 +921,10 @@ img.with-border{
 	position:relative;
 }
 
+#main-slider .container {
+	margin-top: 15%;
+}
+
 /* ----------------------------------------------*/
 /* 06.1 Main Slider Height					     */
 /* ----------------------------------------------*/
