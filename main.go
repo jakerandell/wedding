@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 	"github.com/gorilla/mux"
-"html/template"
+	"html/template"
 	"log"
 )
 
@@ -42,9 +42,9 @@ func main() {
 	r := mux.NewRouter()
 //	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	staticHandler := http.FileServer(http.Dir("."))
-	staticHandler = http.StripPrefix("/static/", staticHandler)
-	r.PathPrefix("/static/").Handler(staticHandler)
+	r.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("./images/"))))
+	r.PathPrefix("/css/").Handler(http.StripPrefix("/css/", http.FileServer(http.Dir("./css/"))))
+	r.PathPrefix("/js/").Handler(http.StripPrefix("/js/", http.FileServer(http.Dir("./js/"))))
 
 	tmpl := template.Must(template.ParseGlob("templates/*"))
 
