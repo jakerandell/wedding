@@ -3,7 +3,7 @@ package main
 import (
 	//	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gin-gonic/gin"
 	"html/template"
-	"jakerandell.com/intense-forest-5272/Godeps/_workspace/src/github.com/gorilla/mux"
+	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"

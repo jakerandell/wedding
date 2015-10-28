@@ -1,14 +1,10 @@
 {
-	"ImportPath": "jakerandell.com/intense-forest-5272",
+	"ImportPath": "jakerandell.com/wedding",
 	"GoVersion": "go1.5.1",
 	"Packages": [
 		"./..."
 	],
 	"Deps": [
-		{
-			"ImportPath": "github.com/gorilla/context",
-			"Rev": "1c83b3eabd45b6d76072b66b746c20815fb2872d"
-		},
 		{
 			"ImportPath": "github.com/gorilla/mux",
 			"Rev": "ad4d7a5882b961e07e2626045eb995c022ac6664"
