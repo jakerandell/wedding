@@ -29,5 +29,9 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
+	router.GET("/loaderio-21e121865e59f3867a444fbdb50f665d/", func(c *gin.Context) {
+		c.String(http.StatusOK, "loaderio-21e121865e59f3867a444fbdb50f665d")
+	})
+
 	router.Run(":" + port)
 }
