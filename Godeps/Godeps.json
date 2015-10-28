@@ -1,6 +1,6 @@
 {
 	"ImportPath": "jakerandell.com/wedding",
-	"GoVersion": "go1.4.2",
+	"GoVersion": "go1.5.1",
 	"Packages": [
 		"./..."
 	],
@@ -20,7 +20,7 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",
-			"Rev": "2cba614e8ff920c60240d2677bc019af32ee04e5"
+			"Rev": "e1a5816c9bfcaeceeaeb821e8eea1c61ecd3220e"
 		},
 		{
 			"ImportPath": "gopkg.in/bluesuncorp/validator.v5",
