@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gin-gonic/gin"
 	_ "jakerandell.com/wedding/Godeps/_workspace/src/github.com/lib/pq"
 	"log"
