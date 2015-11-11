@@ -60,6 +60,7 @@ func main() {
 			//			c.String(http.StatusInternalServerError, fmt.Sprintf("Error incrementing tick: %q", err))
 			c.JSON(200, gin.H{
 				"success": false,
+				"error": err,
 			})
 		} else {
 			c.JSON(200, gin.H{
