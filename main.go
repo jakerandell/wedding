@@ -54,7 +54,7 @@ func main() {
 
 		if _, err := db.Query(`INSERT INTO addresses
 			(name, addr1, addr2, city, state, zip, phone, origination)
-			VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())`,
+			VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())`,
 			name, addr1, addr2, city, state, zip, phone,
 		); err != nil {
 			//			c.String(http.StatusInternalServerError, fmt.Sprintf("Error incrementing tick: %q", err))
