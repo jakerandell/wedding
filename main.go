@@ -1,17 +1,17 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gin-gonic/gin"
+	_ "jakerandell.com/wedding/Godeps/_workspace/src/github.com/lib/pq"
+	"log"
 	"net/http"
 	"os"
-	"database/sql"
-	_ "github.com/lib/pq"
-	"fmt"
-	"log"
 )
 
 var (
-	db	*sql.DB = nil
+	db *sql.DB = nil
 )
 
 func main() {
@@ -36,7 +36,6 @@ func main() {
 	router.Static("/js", "js")
 	router.Static("/fonts", "fonts")
 
-
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
@@ -59,7 +58,7 @@ func main() {
 			VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())`,
 			name, addr1, addr2, city, state, zip, phone,
 		); err != nil {
-//			c.String(http.StatusInternalServerError, fmt.Sprintf("Error incrementing tick: %q", err))
+			//			c.String(http.StatusInternalServerError, fmt.Sprintf("Error incrementing tick: %q", err))
 			c.JSON(200, gin.H{
 				"success": false,
 			})
@@ -85,6 +84,5 @@ func main() {
 	})
 
 	router.Run(":" + port)
-
 
 }
