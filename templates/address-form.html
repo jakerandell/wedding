@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Minimal Form Interface</title>
+	<meta name="description" content="Minimal Form Interface: Simplistic, single input view form"/>
+	<meta name="keywords" content="form, minimal, interface, single input, big form, responsive form, transition"/>
+	<meta name="author" content="Codrops"/>
+	<link rel="stylesheet" type="text/css" href="/css/address-form/normalize.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/address-form/demo.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/address-form/component.css"/>
+	<script src="/js/address-form/modernizr.custom.js"></script>
+	<script src="/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<header class="codrops-header">
+		<h1>Randell Wedding <span>All your info are belong to us</span></h1>
+	</header>
+	<section>
+		<form id="theForm" class="simform" autocomplete="off">
+			<div class="simform-inner">
+				<ol class="questions">
+					<li>
+						<span><label for="q1">Name(s)</label></span>
+						<input id="q1" name="q1" type="text" required>
+					</li>
+					<li>
+						<span><label for="q2">Street Address</label></span>
+						<input id="q2" name="q2" type="text" required>
+					</li>
+					<li>
+						<span><label for="q3">Apartment #</label></span>
+						<input id="q3" name="q3" type="text">
+					</li>
+					<li>
+						<span><label for="q4">City</label></span>
+						<input id="q4" name="q4" type="text" required>
+					</li>
+					<li>
+						<span><label for="q5">State</label></span>
+						<input id="q5" name="q5" type="text" value="NY" required>
+					</li>
+					<li>
+						<span><label for="q6">Zip</label></span>
+						<input id="q6" name="q6" type="text" required>
+					</li>
+					<li>
+						<span><label for="q7">Phone</label></span>
+						<input id="q7" name="q7" type="text">
+					</li>
+				</ol>
+				<!-- /questions -->
+				<button class="submit" type="submit">Send answers</button>
+				<div class="controls">
+					<button class="next"></button>
+					<div class="progress"></div>
+							<span class="number">
+								<span class="number-current"></span>
+								<span class="number-total"></span>
+							</span>
+					<span class="error-message"></span>
+				</div>
+				<!-- / controls -->
+			</div>
+			<!-- /simform-inner -->
+			<span class="final-message"></span>
+		</form>
+	</section>
+</div>
+<script src="/js/address-form/classie.js"></script>
+<script src="/js/address-form/stepsForm.js"></script>
+<script>
+	var theForm = document.getElementById('theForm');
+
+	new stepsForm(theForm, {
+		onSubmit: function (form) {
+			// hide form
+			classie.addClass(theForm.querySelector('.simform-inner'), 'hide');
+
+				$.ajax({
+						type: 'POST',
+						url: '/address-post',
+						data: $('#theForm').serialize(),
+						dataType: 'json',
+						encode: true
+					})
+					.done(function (data) {
+						var messageEl = theForm.querySelector('.final-message');
+
+						if (!data.success) {
+							messageEl.innerHTML = 'Oh no errors ]:';
+						} else {
+							messageEl.innerHTML = 'Thank you!';
+						}
+
+						classie.addClass(messageEl, 'show');
+					});
+				event.preventDefault();
+
+
+		}
+	});
+</script>
+</body>
+</html>
