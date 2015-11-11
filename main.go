@@ -35,11 +35,16 @@ func main() {
 	router.Static("/js", "js")
 	router.Static("/fonts", "fonts")
 
+	authorized := router.Group("/", gin.BasicAuth(gin.Accounts{
+		"randellwedding": "august13",
+	}))
+
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{})
+//		c.HTML(http.StatusOK, "index.html", gin.H{})
+		c.Redirect(http.StatusTemporaryRedirect, "/address")
 	})
 
-	router.GET("/address", func(c *gin.Context) {
+	authorized.GET("/address", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "address-form.html", gin.H{})
 	})
 
