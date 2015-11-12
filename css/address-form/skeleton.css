@@ -379,6 +379,28 @@ hr {
   border-width: 0;
   border-top: 1px solid #E1E1E1; }
 
+#ajax-response {
+	border-radius: 3px;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+	text-align: center;
+}
+
+.has-error {
+	background: #f3dcdc;
+	border: solid 1px #d7aeae;
+	color: #9b5756;
+}
+
+.has-success {
+	background: #e7f6db;
+	border: solid 1px #c1dbad;
+	color: #75a153;
+}
+
 
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

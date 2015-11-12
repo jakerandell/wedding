@@ -14,23 +14,21 @@
 	<script>
 		$(function() {
 			$('form').on('submit', function() {
+				$(this).find('.button-primary').attr('disabled', true);
 				$.ajax({
 							type: 'POST',
 							url: '/address-post',
-							data: $('#theForm').serialize(),
+							data: $(this).serialize(),
 							dataType: 'json',
 							encode: true
 						})
 						.done(function (data) {
-							var messageEl = theForm.querySelector('.final-message');
-
 							if (!data.success) {
-								messageEl.innerHTML = 'Oh no errors ]:';
+								$('#ajax-response').addClass('has-error').html('Oh no errors ]:');
 							} else {
-								messageEl.innerHTML = 'Thank you!';
+								$(this).find('.button-primary').attr('disabled', false);
+								$('#ajax-response').addClass('has-success').html('Thank you!');
 							}
-
-							classie.addClass(messageEl, 'show');
 						});
 				event.preventDefault();
 			})
@@ -116,6 +114,7 @@
 				<input class="u-full-width" type="text" name="phone" id="phone">
 			</div>
 			<input class="button-primary" type="submit" value="Submit">
+			<div id="ajax-response"></div>
 		</form>
 	</section>
 </div>
