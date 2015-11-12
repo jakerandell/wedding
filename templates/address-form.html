@@ -25,9 +25,15 @@
 						.done(function (data) {
 							if (!data.success) {
 								$('#ajax-response').addClass('has-error').html('Oh no errors ]:');
+								$('html, body').animate({
+									scrollTop: $("#ajax-response").offset().top
+								}, 2000);
 							} else {
 								$(this).find('.button-primary').attr('disabled', false);
 								$('#ajax-response').addClass('has-success').html('Thank you!');
+								$('html, body').animate({
+									scrollTop: $("#ajax-response").offset().top
+								}, 2000);
 							}
 						});
 				event.preventDefault();
@@ -87,11 +93,11 @@
 		<form>
 			<div class="row">
 				<label for="name">Name</label>
-				<input class="u-full-width" type="text" name="name" id="name">
+				<input class="u-full-width" type="text" name="name" id="name" required>
 			</div>
 			<div class="row">
 				<label for="addr1">Street Address</label>
-				<input class="u-full-width" type="text" name="addr1" id="addr1">
+				<input class="u-full-width" type="text" name="addr1" id="addr1" required>
 			</div>
 			<div class="row">
 				<label for="addr2">Apt #</label>
@@ -99,19 +105,19 @@
 			</div>
 			<div class="row">
 				<label for="city">City</label>
-				<input class="u-full-width" type="text" name="city" id="city">
+				<input class="u-full-width" type="text" name="city" id="city" required>
 			</div>
 			<div class="row">
 				<label for="state">State</label>
-				<input class="u-full-width" type="text" name="state" id="state" value="NY">
+				<input class="u-full-width" type="text" name="state" id="state" value="NY" required>
 			</div>
 			<div class="row">
 				<label for="zip">Zip</label>
-				<input class="u-full-width" type="text" name="zip" id="zip">
+				<input class="u-full-width" type="text" name="zip" id="zip" required>
 			</div>
 			<div class="row">
 				<label for="phone">Phone</label>
-				<input class="u-full-width" type="text" name="phone" id="phone">
+				<input class="u-full-width" type="text" name="phone" id="phone" required>
 			</div>
 			<input class="button-primary" type="submit" value="Submit">
 			<div id="ajax-response"></div>
