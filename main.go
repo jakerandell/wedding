@@ -49,13 +49,13 @@ func main() {
 	})
 
 	router.POST("/address-post", func(c *gin.Context) {
-		name := c.PostForm("q1")
-		addr1 := c.PostForm("q2")
-		addr2 := c.PostForm("q3")
-		city := c.PostForm("q4")
-		state := c.PostForm("q5")
-		zip := c.PostForm("q6")
-		phone := c.PostForm("q7")
+		name := c.PostForm("name")
+		addr1 := c.PostForm("addr1")
+		addr2 := c.PostForm("addr2")
+		city := c.PostForm("city")
+		state := c.PostForm("state")
+		zip := c.PostForm("zip")
+		phone := c.PostForm("phone")
 
 		if _, err := db.Query(`INSERT INTO addresses
 			(name, addr1, addr2, city, state, zip, phone, origination)

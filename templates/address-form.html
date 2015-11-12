@@ -4,23 +4,45 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Minimal Form Interface</title>
-	<meta name="description" content="Minimal Form Interface: Simplistic, single input view form"/>
-	<meta name="keywords" content="form, minimal, interface, single input, big form, responsive form, transition"/>
-	<meta name="author" content="Codrops"/>
-	<link rel="stylesheet" type="text/css" href="/css/address-form/normalize.css"/>
-	<link rel="stylesheet" type="text/css" href="/css/address-form/demo.css"/>
-	<link rel="stylesheet" type="text/css" href="/css/address-form/component.css"/>
+	<meta name="theme-color" content="#A9C7BF">
+	<title>Address Registry</title>
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/address-form/normalize.css">
+	<link rel="stylesheet" href="/css/address-form/skeleton.css">
 	<script src="/js/address-form/modernizr.custom.js"></script>
 	<script src="/js/jquery-1.11.1.min.js"></script>
+	<script>
+		$(function() {
+			$('form').on('submit', function() {
+				$.ajax({
+							type: 'POST',
+							url: '/address-post',
+							data: $('#theForm').serialize(),
+							dataType: 'json',
+							encode: true
+						})
+						.done(function (data) {
+							var messageEl = theForm.querySelector('.final-message');
+
+							if (!data.success) {
+								messageEl.innerHTML = 'Oh no errors ]:';
+							} else {
+								messageEl.innerHTML = 'Thank you!';
+							}
+
+							classie.addClass(messageEl, 'show');
+						});
+				event.preventDefault();
+			})
+		})
+	</script>
 </head>
 <body>
 <div class="container">
-	<header class="codrops-header">
-		<h1>Randell Wedding <span>All your info are belong to us</span></h1>
-	</header>
+	<h1>Randell Wedding</h1>
+	<h3>Address Registry</h3>
 	<section>
-		<form id="theForm" class="simform" autocomplete="off">
+		<!--<form id="theForm" class="simform" autocomplete="off">
 			<div class="simform-inner">
 				<ol class="questions">
 					<li>
@@ -52,7 +74,6 @@
 						<input id="q7" name="q7" type="text">
 					</li>
 				</ol>
-				<!-- /questions -->
 				<button class="submit" type="submit">Send answers</button>
 				<div class="controls">
 					<button class="next"></button>
@@ -63,46 +84,40 @@
 							</span>
 					<span class="error-message"></span>
 				</div>
-				<!-- / controls -->
 			</div>
-			<!-- /simform-inner -->
-			<span class="final-message"></span>
+		</form-->
+		<form>
+			<div class="row">
+				<label for="name">Name</label>
+				<input class="u-full-width" type="text" name="name" id="name">
+			</div>
+			<div class="row">
+				<label for="addr1">Street Address</label>
+				<input class="u-full-width" type="text" name="addr1" id="addr1">
+			</div>
+			<div class="row">
+				<label for="addr2">Apt #</label>
+				<input class="u-full-width" type="text" name="addr2" id="addr2">
+			</div>
+			<div class="row">
+				<label for="city">City</label>
+				<input class="u-full-width" type="text" name="city" id="city">
+			</div>
+			<div class="row">
+				<label for="state">State</label>
+				<input class="u-full-width" type="text" name="state" id="state" value="NY">
+			</div>
+			<div class="row">
+				<label for="zip">Zip</label>
+				<input class="u-full-width" type="text" name="zip" id="zip">
+			</div>
+			<div class="row">
+				<label for="phone">Phone</label>
+				<input class="u-full-width" type="text" name="phone" id="phone">
+			</div>
+			<input class="button-primary" type="submit" value="Submit">
 		</form>
 	</section>
 </div>
-<script src="/js/address-form/classie.js"></script>
-<script src="/js/address-form/stepsForm.js"></script>
-<script>
-	var theForm = document.getElementById('theForm');
-
-	new stepsForm(theForm, {
-		onSubmit: function (form) {
-			// hide form
-			classie.addClass(theForm.querySelector('.simform-inner'), 'hide');
-
-				$.ajax({
-						type: 'POST',
-						url: '/address-post',
-						data: $('#theForm').serialize(),
-						dataType: 'json',
-						encode: true
-					})
-					.done(function (data) {
-						var messageEl = theForm.querySelector('.final-message');
-
-						if (!data.success) {
-							messageEl.innerHTML = 'Oh no errors ]:';
-						} else {
-							messageEl.innerHTML = 'Thank you!';
-						}
-
-						classie.addClass(messageEl, 'show');
-					});
-				event.preventDefault();
-
-
-		}
-	});
-</script>
 </body>
 </html>
