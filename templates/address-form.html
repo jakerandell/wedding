@@ -30,12 +30,12 @@
 						})
 						.done(function (data) {
 							if (!data.success) {
+								$(this).find('.button-primary').attr('disabled', false);
 								$('#ajax-response').addClass('has-error').html('Oh no errors ]:');
 								$('html, body').animate({
 									scrollTop: $("#ajax-response").offset().top
 								}, 2000);
 							} else {
-								$(this).find('.button-primary').attr('disabled', false);
 								$('#ajax-response').addClass('has-success').html('Thank you!');
 								$('html, body').animate({
 									scrollTop: $("#ajax-response").offset().top
