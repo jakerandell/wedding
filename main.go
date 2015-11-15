@@ -3,16 +3,16 @@ package main
 import (
 	"database/sql"
 	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gin-gonic/gin"
+	"jakerandell.com/wedding/Godeps/_workspace/src/github.com/gorilla/sessions"
 	_ "jakerandell.com/wedding/Godeps/_workspace/src/github.com/lib/pq"
 	"log"
 	"net/http"
 	"os"
-	"github.com/gorilla/sessions"
 )
 
 var (
-	db *sql.DB = nil
-	validPassword = os.Getenv("THE-PASSWORD")
+	db            *sql.DB = nil
+	validPassword         = os.Getenv("THE-PASSWORD")
 )
 
 func main() {
@@ -64,9 +64,8 @@ func main() {
 	})
 	router.Use(validateAuth(store))
 
-
 	router.GET("/", func(c *gin.Context) {
-//		c.HTML(http.StatusOK, "index.html", gin.H{})
+		//		c.HTML(http.StatusOK, "index.html", gin.H{})
 		c.Redirect(http.StatusTemporaryRedirect, "/address")
 	})
 
@@ -90,7 +89,7 @@ func main() {
 		); err != nil {
 			c.JSON(200, gin.H{
 				"success": false,
-				"error": err,
+				"error":   err,
 			})
 		} else {
 			c.JSON(200, gin.H{
@@ -98,8 +97,6 @@ func main() {
 			})
 		}
 	})
-
-
 
 	router.GET("/loaderio-21e121865e59f3867a444fbdb50f665d/", func(c *gin.Context) {
 		c.String(http.StatusOK, "loaderio-21e121865e59f3867a444fbdb50f665d")
@@ -112,7 +109,8 @@ func main() {
 func validateAuth(store *sessions.CookieStore) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session, err := store.Get(c.Request, "gatekeeper")
-		if err != nil {}
+		if err != nil {
+		}
 		if session.Values["isLoggedIn"] == "sure" {
 			c.Next()
 		} else {
