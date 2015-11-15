@@ -57,8 +57,9 @@ func main() {
 			session.Save(c.Request, c.Writer)
 			c.Redirect(http.StatusFound, "/address")
 		} else {
-			c.JSON(200, gin.H{
-				"success": false,
+			c.HTML(http.StatusOK, "login.html", gin.H{
+				"success": "false",
+				"message": "Incorrect Password",
 			})
 		}
 	})
