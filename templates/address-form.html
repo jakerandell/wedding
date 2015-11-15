@@ -20,7 +20,7 @@
 	<script>
 		$(function() {
 			$('form').on('submit', function() {
-				$(this).find('.button-primary').attr('disabled', true);
+				$(this).find('button').attr('disabled', true);
 				$.ajax({
 							type: 'POST',
 							url: '/address-post',
@@ -30,7 +30,7 @@
 						})
 						.done(function (data) {
 							if (!data.success) {
-								$(this).find('.button-primary').attr('disabled', false);
+								$(this).find('button').attr('disabled', false);
 								$('#ajax-response').addClass('has-error').html('Oh no errors ]:');
 								$('html, body').animate({
 									scrollTop: $("#ajax-response").offset().top
