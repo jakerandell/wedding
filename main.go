@@ -7,10 +7,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"github.com/gorilla/sessions"
 )
 
 var (
 	db *sql.DB = nil
+	validPassword = os.Getenv("THE-PASSWORD")
 )
 
 func main() {
@@ -27,6 +29,8 @@ func main() {
 		log.Fatalf("Error opening database: %q", errd)
 	}
 
+	store := sessions.NewCookieStore([]byte(os.Getenv("COOKIE-STORE-SECRET")))
+
 	router := gin.New()
 	router.Use(gin.Logger())
 	router.LoadHTMLGlob("templates/*.html")
@@ -35,16 +39,38 @@ func main() {
 	router.Static("/js", "js")
 	router.Static("/fonts", "fonts")
 
-	authorized := router.Group("/", gin.BasicAuth(gin.Accounts{
-		"randellwedding": "august13",
-	}))
+	router.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", nil)
+	})
+
+	router.POST("/login", func(c *gin.Context) {
+		pass := c.PostForm("password")
+
+		session, err := store.Get(c.Request, "gatekeeper")
+		if err != nil {
+			c.Error(err)
+			return
+		}
+
+		if pass == validPassword {
+			session.Values["isLoggedIn"] = "sure"
+			session.Save(c.Request, c.Writer)
+			c.Redirect(http.StatusFound, "/address")
+		} else {
+			c.JSON(200, gin.H{
+				"success": false,
+			})
+		}
+	})
+	router.Use(validateAuth(store))
+
 
 	router.GET("/", func(c *gin.Context) {
 //		c.HTML(http.StatusOK, "index.html", gin.H{})
 		c.Redirect(http.StatusTemporaryRedirect, "/address")
 	})
 
-	authorized.GET("/address", func(c *gin.Context) {
+	router.GET("/address", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "address-form.html", gin.H{})
 	})
 
@@ -62,7 +88,6 @@ func main() {
 			VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())`,
 			name, addr1, addr2, city, state, zip, phone,
 		); err != nil {
-			//			c.String(http.StatusInternalServerError, fmt.Sprintf("Error incrementing tick: %q", err))
 			c.JSON(200, gin.H{
 				"success": false,
 				"error": err,
@@ -72,17 +97,9 @@ func main() {
 				"success": true,
 			})
 		}
-
-		/*c.JSON(200, gin.H{
-			"message": name,
-			"address 1": addr1,
-			"address 2": addr2,
-			"city": city,
-			"state": state,
-			"zip": zip,
-			"phone": phone,
-		})*/
 	})
+
+
 
 	router.GET("/loaderio-21e121865e59f3867a444fbdb50f665d/", func(c *gin.Context) {
 		c.String(http.StatusOK, "loaderio-21e121865e59f3867a444fbdb50f665d")
@@ -90,4 +107,16 @@ func main() {
 
 	router.Run(":" + port)
 
+}
+
+func validateAuth(store *sessions.CookieStore) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		session, err := store.Get(c.Request, "gatekeeper")
+		if err != nil {}
+		if session.Values["isLoggedIn"] == "sure" {
+			c.Next()
+		} else {
+			c.Redirect(http.StatusTemporaryRedirect, "/login")
+		}
+	}
 }

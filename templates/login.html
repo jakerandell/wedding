@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#A9C7BF">
+	<title>Address Registry</title>
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<!--<link rel="stylesheet" href="/css/address-form/normalize.css">-->
+	<!--<link rel="stylesheet" href="/css/address-form/skeleton.css">-->
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="/css/address-form/materialize/css/materialize.css"  media="screen,projection"/>
+
+	<script src="/js/address-form/modernizr.custom.js"></script>
+	<script src="/js/jquery-1.11.1.min.js"></script>
+	<script src="/css/address-form/materialize/js/materialize.min.js"></script>
+	<script>
+		$(function() {
+			$('#password').focus();
+		})
+	</script>
+	<style>
+	html {
+		height: 100%;
+	}
+	body {
+		width: 100%;
+		height: 100%;
+		background: rgba(145,174,166,1);
+		background: -moz-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+		background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(145,174,166,1)), color-stop(100%, rgba(114,150,140,1)));
+		background: -webkit-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+		background: -o-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+		background: -ms-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+		background: linear-gradient(to bottom, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91aea6', endColorstr='#72968c', GradientType=0 );
+	}
+		.section {
+			padding: 3em 0 15em 0;
+		}
+
+		#ajax-response {
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+
+		.has-error {
+			background: #f3dcdc;
+			border: solid 1px #d7aeae;
+			color: #9b5756;
+		}
+
+		.has-success {
+			background: #d5f4ec;
+			border: solid 1px #A9C7BF;
+			color: #91aea6;
+		}
+
+		form {
+			width: 50%;
+			margin: 20% auto 0 auto;
+			background: white;
+			padding: 3em;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+<div class="container section">
+	<section>
+		<form class="z-depth-3" action="login" method="post">
+			<div class="row">
+				<label for="password">Password</label>
+				<input class="u-full-width" type="password" name="password" id="password" required>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+		</form>
+		<div id="ajax-response"></div>
+	</section>
+</div>
+</body>
+</html>

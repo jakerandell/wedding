@@ -7,10 +7,16 @@
 	<meta name="theme-color" content="#A9C7BF">
 	<title>Address Registry</title>
 	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/address-form/normalize.css">
-	<link rel="stylesheet" href="/css/address-form/skeleton.css">
+	<!--<link rel="stylesheet" href="/css/address-form/normalize.css">-->
+	<!--<link rel="stylesheet" href="/css/address-form/skeleton.css">-->
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="/css/address-form/materialize/css/materialize.css"  media="screen,projection"/>
+
 	<script src="/js/address-form/modernizr.custom.js"></script>
 	<script src="/js/jquery-1.11.1.min.js"></script>
+	<script src="/css/address-form/materialize/js/materialize.min.js"></script>
 	<script>
 		$(function() {
 			$('form').on('submit', function() {
@@ -40,12 +46,81 @@
 			})
 		})
 	</script>
+	<style>
+		body {
+			width: 100%;
+			min-height: 100%;
+			background: rgba(145,174,166,1);
+			background: -moz-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(145,174,166,1)), color-stop(100%, rgba(114,150,140,1)));
+			background: -webkit-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+			background: -o-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+			background: -ms-linear-gradient(top, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+			background: linear-gradient(to bottom, rgba(145,174,166,1) 0%, rgba(114,150,140,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91aea6', endColorstr='#72968c', GradientType=0 );
+		}
+
+		nav {
+			height: auto;
+			background: #A9C7BF;
+		}
+
+		.nav-wrapper {
+			padding: 1px 0 1em 0;
+		}
+
+		.section {
+			padding: 3em 0 15em 0;
+		}
+
+		#ajax-response {
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+
+		.has-error {
+			background: #f3dcdc;
+			border: solid 1px #d7aeae;
+			color: #9b5756;
+		}
+
+		.has-success {
+			background: #d5f4ec;
+			border: solid 1px #A9C7BF;
+			color: #91aea6;
+		}
+
+		form {
+			margin: 2em auto;
+			background: white;
+			padding: 3em;
+			border-radius: 5px;
+		}
+
+		h2, h5 {
+			color: white;
+		}
+	</style>
 </head>
 <body>
-<div class="container">
-	<h1>Randell Wedding</h1>
-	<h3>Address Registry</h3>
+<!--<header>
+	<nav class="top-nav">
+		<div class="container">
+			<div class="nav-wrapper">
+				<h2>Randell Wedding</h2>
+				<h5 class="header">Address Registry</h5>
+			</div>
+		</div>
+	</nav>
+</header>-->
+<div class="container section">
 	<section>
+		<h2>Randell Wedding</h2>
+		<h5 class="header">Address Registry</h5>
 		<!--<form id="theForm" class="simform" autocomplete="off">
 			<div class="simform-inner">
 				<ol class="questions">
@@ -90,7 +165,7 @@
 				</div>
 			</div>
 		</form-->
-		<form>
+		<form class="z-depth-3">
 			<div class="row">
 				<label for="name">Name</label>
 				<input class="u-full-width" type="text" name="name" id="name" required>
@@ -119,7 +194,9 @@
 				<label for="phone">Phone</label>
 				<input class="u-full-width" type="text" name="phone" id="phone" required>
 			</div>
-			<input class="button-primary" type="submit" value="Submit">
+			<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+				<i class="material-icons right">send</i>
+			</button>
 			<div id="ajax-response"></div>
 		</form>
 	</section>
