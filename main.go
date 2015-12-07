@@ -66,8 +66,8 @@ func main() {
 	router.Use(validateAuth(store))
 
 	router.GET("/", func(c *gin.Context) {
-		//		c.HTML(http.StatusOK, "index.html", gin.H{})
-		c.Redirect(http.StatusTemporaryRedirect, "/address")
+		c.HTML(http.StatusOK, "index.html", gin.H{})
+//		c.Redirect(http.StatusTemporaryRedirect, "/address")
 	})
 
 	router.GET("/address", func(c *gin.Context) {
