@@ -63,7 +63,7 @@ func main() {
 			})
 		}
 	})
-	router.Use(validateAuth(store))
+//	router.Use(validateAuth(store))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
